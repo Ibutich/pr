@@ -1,0 +1,26 @@
+{% extends 'pr/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}
+<div class="text-center mt-4">
+    <h2>Register</h2>
+  <img  src="{%static 'img/nf.jpg' %}" alt="" class="img-fluid">
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 offset-3">
+<form method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form layout='inline' %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+       Register
+    </button>
+    {% endbuttons %}
+</form>
+    </div>
+    </div>
+{% endblock %}

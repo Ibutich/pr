@@ -1,0 +1,43 @@
+
+{% extends 'pr/base.html' %}
+{% block title %}
+<div class="text-center">
+    <h2>Welcome to our customer service satisfaction survey app</h2>
+    <p class="lead">Review a place you've visited</p>
+{% endblock %}
+{% block content %}
+
+{% load static%}
+<div class="d-flex justify-content-center">
+  <form action="{% url 'pr:search_results' %}" method="get">
+    <input class="form-control" name="q" type="text" placeholder="Search...">
+  </form>
+</div>
+
+  <h5 class="text-center">Have you been to these places? Travelers want to see more reviews of these places.</h5>
+  <div class="row mt-5">
+    {% for company in company_list %}
+    <div class="col-md-4">
+
+        <div class="card mb-3">
+            <h3 class="card-header">{{ company.name }}</h3>
+            {% if company.image %}
+            <img style="height: 200px; width: 100%; display: block;" src="{{company.image.url}}" alt="Card image">
+            {% else%}
+            <img style="height: 200px; width: 100%; display: block;" src="{%static 'img/1.jpg' %}" alt="Card image">
+            {% endif %}
+            <div class="card-body ">
+                
+                <h6 class="text-center text-warning">Rated  {{ company.review_set.count }} of 5 </h6>
+            
+              <a href="{% url 'pr:company_detail' company.id %}" class="card-link mr-20">Review </a>
+            </div>
+        </div>
+    </div> 
+     {% endfor %} 
+    
+    </div>
+{% endblock content %}
+              
+      
+               
